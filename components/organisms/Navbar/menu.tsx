@@ -4,7 +4,7 @@ import Link from 'next/link';
 interface MenuProps {
   title: string;
   active?: boolean;
-  title: string;
+  href: string;
 }
 
 export default function Menu(props: Partial<MenuProps>) {

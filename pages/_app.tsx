@@ -25,8 +25,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
           rel="stylesheet"
-          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-          crossOrigin="anonymous"
         />
 
         {/* Google Font */}
@@ -41,7 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* Bootstrap JS */}
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-          crossOrigin="anonymous"
         />
 
       </Head>
