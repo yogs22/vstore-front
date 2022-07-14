@@ -2,18 +2,23 @@ import Profile from './profile.tsx';
 import Footer from './footer.tsx';
 import MenuItem from './menu-item.tsx';
 
-export default function Sidebar() {
+interface SidebarProps {
+  activeMenu: 'overview' | 'transactions' | 'setting' | 'messages' | 'rewards' | 'card'
+}
+
+export default function Sidebar(props: SidebarProps) {
+  const { activeMenu } = props;
   return (
     <section className="sidebar">
       <div className="content pt-50 pb-30 ps-30">
         <Profile />
         <div className="menus">
-          <MenuItem title="Overview" link="/member" img="member-overview.svg" active />
-          <MenuItem title="Transactions" link="/member/transactions" img="member-transactions.svg" />
-          <MenuItem title="Messages" link="/member/messages" img="member-messages.svg" />
-          <MenuItem title="Card" link="/member/card" img="member-card.svg" />
-          <MenuItem title="Rewards" link="/member/rewards" img="member-rewards.svg" />
-          <MenuItem title="Setting" link="/member/setting" img="member-setting.svg" />
+          <MenuItem title="Overview" link="/member" img="member-overview.svg" active={activeMenu === 'overview'} />
+          <MenuItem title="Transactions" link="/member/transactions" img="member-transactions.svg" active={activeMenu === 'transactions'} />
+          <MenuItem title="Messages" link="/member/messages" img="member-messages.svg" active={activeMenu === 'messages'} />
+          <MenuItem title="Card" link="/member/card" img="member-card.svg" active={activeMenu === 'card'} />
+          <MenuItem title="Rewards" link="/member/rewards" img="member-rewards.svg" active={activeMenu === 'rewards'} />
+          <MenuItem title="Setting" link="/member/edit-profile" img="member-setting.svg" active={activeMenu === 'setting'} />
           <MenuItem title="Log Out" link="/" img="member-logout.svg" />
         </div>
         <Footer />
