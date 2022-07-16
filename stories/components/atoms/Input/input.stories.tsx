@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import Input from '../../../../components/atoms/Input/index.tsx';
+import Input, { InputProps } from '../../../../components/atoms/Input/index.tsx';
 
 export default {
   title: 'Components/Atoms/Input',
