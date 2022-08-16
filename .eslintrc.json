@@ -27,6 +27,7 @@
         "jsx-a11y/label-has-associated-control": "off",
         "react/function-component-definition": "off",
         "import/no-extraneous-dependencies": "off",
+        "no-underscore-dangle": "off",
         "import/extensions": "off"
     }
 }

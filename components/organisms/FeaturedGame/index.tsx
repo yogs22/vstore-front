@@ -1,6 +1,16 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import GameItem from '../../molecules/GameItem/index.tsx';
 
 export default function FeaturedGame() {
+  const [gameList, setGameList] = useState([]);
+  const getGame = async () => {
+    const response = await axios.get('https://vstore-app.herokuapp.com/api/v1/players/landingpage');
+    setGameList(response.data.data);
+  };
+  useEffect(() => {
+    getGame();
+  }, []);
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
@@ -14,11 +24,9 @@ export default function FeaturedGame() {
           className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
           data-aos="fade-up"
         >
-          <GameItem title="Super Mechs" category="Mobile" src="/img/Thumbnail-1.png" />
-          <GameItem title="Call of Duty" category="Desktop" src="/img/Thumbnail-2.png" />
-          <GameItem title="Arena of Valor" category="Mobile" src="/img/Thumbnail-3.png" />
-          <GameItem title="Clash Of Clans" category="Mobile" src="/img/Thumbnail-4.png" />
-          <GameItem title="Mobile Legends" category="Mobile" src="/img/Thumbnail-5.png" />
+          {gameList.map((item) => (
+            <GameItem key={item._id} title={item.name} category={item.category.name} src={`https://vstore-app.herokuapp.com/uploads/${item.thumbnail}`} />
+          ))}
         </div>
       </div>
     </section>
