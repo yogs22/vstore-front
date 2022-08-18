@@ -30,7 +30,13 @@ export default function FeaturedGame() {
           data-aos="fade-up"
         >
           {gameList.map((item: GameItemTypes) => (
-            <GameItem key={item._id} title={item.name} category={item.category.name} src={`${API_IMG}/${item.thumbnail}`} />
+            <GameItem
+              key={item._id}
+              id={item._id}
+              title={item.name}
+              category={item.category.name}
+              src={`${API_IMG}/${item.thumbnail}`}
+            />
           ))}
         </div>
       </div>
