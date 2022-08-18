@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import GameItem from '../../molecules/GameItem/index.tsx';
 import { getFeaturedGame } from '../../../services/player.ts';
+import { GameItemTypes } from '../../../services/data-types/index.ts';
 
 export default function FeaturedGame() {
   const [gameList, setGameList] = useState([]);
@@ -13,6 +14,8 @@ export default function FeaturedGame() {
   useEffect(() => {
     getFeaturedGameList();
   }, []);
+
+  const API_IMG = process.env.NEXT_PUBLIC_UPLOAD;
   return (
     <section className="featured-game pt-50 pb-50">
       <div className="container-fluid">
@@ -26,8 +29,8 @@ export default function FeaturedGame() {
           className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
           data-aos="fade-up"
         >
-          {gameList.map((item) => (
-            <GameItem key={item._id} title={item.name} category={item.category.name} src={`https://vstore-app.herokuapp.com/uploads/${item.thumbnail}`} />
+          {gameList.map((item: GameItemTypes) => (
+            <GameItem key={item._id} title={item.name} category={item.category.name} src={`${API_IMG}/${item.thumbnail}`} />
           ))}
         </div>
       </div>
