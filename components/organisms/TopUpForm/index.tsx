@@ -1,9 +1,10 @@
+import { PaymentTypes, NominalsTypes } from '../../../services/data-types/index.ts';
 import NominalItem from './NominalItem.tsx';
 import PaymentItem from './PaymentItem.tsx';
 
 interface TopUpFormProps {
-  nominals: string;
-  payments: string;
+  nominals: NominalsTypes;
+  payments: PaymentTypes;
 }
 
 export default function TopUpForm(props: TopUpFormProps) {
