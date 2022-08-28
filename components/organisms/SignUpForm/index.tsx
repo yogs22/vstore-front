@@ -7,6 +7,7 @@ export default function SignUpForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const router = useRouter();
   const className = {
@@ -15,7 +16,7 @@ export default function SignUpForm() {
 
   const onSubmit = () => {
     const userForm = {
-      email, name, password,
+      email, name, password, phoneNumber,
     };
 
     localStorage.setItem('user-form', JSON.stringify(userForm));
@@ -26,7 +27,7 @@ export default function SignUpForm() {
       <h2 className="text-4xl fw-bold color-palette-1 mb-10">Sign Up</h2>
       <p className="text-lg color-palette-1 m-0">Daftar dan bergabung dengan kami</p>
       <div className="pt-50">
-        <label htmlFor="name" className={className.label}>Full Names</label>
+        <label htmlFor="name" className={className.label}>Full Name</label>
         <input
           type="text"
           className="form-control rounded-pill text-lg"
@@ -47,6 +48,18 @@ export default function SignUpForm() {
           placeholder="Enter your email address"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
+        />
+      </div>
+      <div className="pt-30">
+        <label htmlFor="phoneNumber" className={className.label}>No Handphone</label>
+        <input
+          type="text"
+          className="form-control rounded-pill text-lg"
+          id="phoneNumber"
+          aria-describedby="phoneNumber"
+          placeholder="Enter your phone number"
+          value={phoneNumber}
+          onChange={(event) => setPhoneNumber(event.target.value)}
         />
       </div>
       <div className="pt-30">
