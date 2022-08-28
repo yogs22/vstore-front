@@ -30,12 +30,12 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalForm = localStorage.getItem('user-form');
-    setLocalForm(JSON.parse(getLocalForm));
+    setLocalForm(JSON.parse(getLocalForm!));
   }, []);
 
   const onSubmit = async () => {
     const getLocalForm = await localStorage.getItem('user-form');
-    const form = JSON.parse(getLocalForm);
+    const form = JSON.parse(getLocalForm!);
     const data = new FormData();
 
     data.append('file', image);
@@ -50,7 +50,7 @@ export default function SignUpPhoto() {
 
     const result = await setSignUp(data);
 
-    if (result?.fields) {
+    if (result?.error) {
       return toast.error(result.message);
     }
 
