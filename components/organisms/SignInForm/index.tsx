@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router';
-import { setLogin } from '../../../services/auth';
+import Cookies from 'js-cookie';
+import { setLogin } from '../../../services/auth.ts';
 
 export default function SignInForm() {
   const [email, setEmail] = useState('');
@@ -27,6 +28,10 @@ export default function SignInForm() {
     }
 
     toast.success('Login Berhasil!');
+    const { token } = response.data;
+    const tokenBase64 = btoa(token);
+
+    Cookies.set('token', tokenBase64, { expires: 7 });
     return router.push('/');
   };
   return (

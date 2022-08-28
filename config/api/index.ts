@@ -19,5 +19,5 @@ export default async function callAPI({ url, method, data }: AxiosRequestConfig)
     return res;
   }
 
-  return axiosResponse.data;
+  return axiosResponse;
 }
