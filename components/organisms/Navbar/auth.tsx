@@ -1,11 +1,44 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 
-interface AuthProps {
-  isLogin?: boolean;
-}
+export default function Auth() {
+  const [isBlock, setIsBlock] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({
+    avatar: '',
+    email: '',
+    id: '',
+    phoneNumber: '',
+    username: '',
+  });
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwtToken = atob(token);
+      const payload = jwtDecode(jwtToken);
+      const { player } = payload;
 
-export default function Auth(props: Partial<AuthProps>) {
-  const { isLogin } = props;
+      const IMG = process.env.NEXT_PUBLIC_UPLOAD;
+
+      setUser({
+        avatar: `${IMG}/${player.avatar}`,
+        email: player.email,
+        id: player.id,
+        phoneNumber: player.phoneNumber,
+        username: player.username,
+      });
+      setIsLogin(true);
+    }
+  }, []);
+  const showMenu = () => {
+    if (isBlock) {
+      setIsBlock(false);
+    } else {
+      setIsBlock(true);
+    }
+  };
   if (isLogin) {
     return (
       <li className="nav-item my-auto dropdown d-flex">
@@ -18,9 +51,10 @@ export default function Auth(props: Partial<AuthProps>) {
             id="dropdownMenuLink"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            onClick={showMenu}
           >
             <img
-              src="/img/avatar-1.png"
+              src={user.avatar}
               className="rounded-circle"
               width="40"
               height="40"
@@ -28,7 +62,7 @@ export default function Auth(props: Partial<AuthProps>) {
             />
           </a>
 
-          <ul className="dropdown-menu border-0" aria-labelledby="dropdownMenuLink">
+          <ul className="dropdown-menu border-0" aria-labelledby="dropdownMenuLink" style={{ display: isBlock ? 'block' : 'none' }}>
             <li><Link href="/member"><a className="dropdown-item text-lg color-palette-2">My Profile</a></Link></li>
             <li><Link href="/"><a className="dropdown-item text-lg color-palette-2">Wallet</a></Link></li>
             <li><Link href="/member/edit-profile"><a className="dropdown-item text-lg color-palette-2">Account Settings</a></Link></li>
@@ -45,8 +79,7 @@ export default function Auth(props: Partial<AuthProps>) {
           className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
           role="button"
         >
-          Sign
-          In
+          Sign In
         </a>
       </Link>
     </li>
