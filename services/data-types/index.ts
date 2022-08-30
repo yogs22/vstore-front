@@ -37,3 +37,11 @@ export interface LoginType {
   email: string;
   password: string;
 }
+
+export interface UserTypes {
+  avatar: string;
+  email: string;
+  id: string;
+  phoneNumber: string;
+  username: string;
+}

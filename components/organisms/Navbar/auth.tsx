@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
+import { UserTypes } from '../../../services/data-types/index.ts';
 
 export default function Auth() {
   const [isBlock, setIsBlock] = useState(false);
@@ -13,25 +15,30 @@ export default function Auth() {
     phoneNumber: '',
     username: '',
   });
+  const router = useRouter();
+
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
       const jwtToken = atob(token);
       const payload = jwtDecode(jwtToken);
-      const { player } = payload;
+      const player: UserTypes = payload;
 
       const IMG = process.env.NEXT_PUBLIC_UPLOAD;
 
-      setUser({
-        avatar: `${IMG}/${player.avatar}`,
-        email: player.email,
-        id: player.id,
-        phoneNumber: player.phoneNumber,
-        username: player.username,
-      });
+      player.avatar = `${IMG}/${player.avatar}`;
+
+      setUser(player);
       setIsLogin(true);
     }
   }, []);
+
+  const onLogout = () => {
+    Cookies.remove('token');
+    router.push('/');
+    setIsLogin(false);
+  };
+
   const showMenu = () => {
     if (isBlock) {
       setIsBlock(false);
@@ -39,6 +46,7 @@ export default function Auth() {
       setIsBlock(true);
     }
   };
+
   if (isLogin) {
     return (
       <li className="nav-item my-auto dropdown d-flex">
@@ -66,7 +74,7 @@ export default function Auth() {
             <li><Link href="/member"><a className="dropdown-item text-lg color-palette-2">My Profile</a></Link></li>
             <li><Link href="/"><a className="dropdown-item text-lg color-palette-2">Wallet</a></Link></li>
             <li><Link href="/member/edit-profile"><a className="dropdown-item text-lg color-palette-2">Account Settings</a></Link></li>
-            <li><Link href="/"><a className="dropdown-item text-lg color-palette-2">Log Out</a></Link></li>
+            <li onClick={onLogout} role="button"><a className="dropdown-item text-lg color-palette-2">Log Out</a></li>
           </ul>
         </div>
       </li>
