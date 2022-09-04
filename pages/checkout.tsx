@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import jwtDecode from 'jwt-decode';
 import CheckoutItem from '../components/organisms/CheckoutItem/index.tsx';
 import CheckoutDetail from '../components/organisms/CheckoutDetail/index.tsx';
@@ -7,12 +6,7 @@ import Navbar from '../components/organisms/Navbar/index.tsx';
 import Footer from '../components/organisms/Footer/index.tsx';
 import { JWTPayloadTypes, UserTypes } from '../services/data-types/index.ts';
 
-interface CheckoutProps {
-  user: UserTypes
-}
-
-export default function Checkout(props: CheckoutProps) {
-  const { user } = props;
+export default function Checkout() {
   return (
     <>
       <Navbar />
@@ -33,7 +27,15 @@ export default function Checkout(props: CheckoutProps) {
   );
 }
 
-export async function getServerSideProps({ req }) {
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  }
+}
+
+export async function getServerSideProps({ req }): GetServerSideProps {
   const { token } = req.cookies;
   if (!token) {
     return {
