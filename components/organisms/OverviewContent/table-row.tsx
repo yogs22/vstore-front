@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import NumberFormat from 'react-number-format';
 
 interface TableRowProps {
   title: string,
@@ -15,19 +16,20 @@ export default function TableRow(props: TableRowProps) {
   } = props;
   const statusClass = cx({
     'float-start icon-status': true,
-    pending: status === 'Pending',
-    success: status === 'Success',
-    failed: status === 'Failed',
+    pending: status === 'pending',
+    success: status === 'success',
+    failed: status === 'failed',
   });
   return (
     <tr className="align-middle">
       <th scope="row">
         <img
           className="float-start me-3 mb-lg-0 mb-3"
-          src={`/img/${image}.png`}
+          src={image}
           width="80"
           height="60"
-          alt=""
+          alt={item}
+          style={{ objectFit: 'cover', borderRadius: '10px' }}
         />
         <div className="game-title-header">
           <p className="game-title fw-medium text-start color-palette-1 m-0">
@@ -39,12 +41,18 @@ export default function TableRow(props: TableRowProps) {
       <td>
         <p className="fw-medium color-palette-1 m-0">
           {item}
-          {' '}
-          Gold
         </p>
       </td>
       <td>
-        <p className="fw-medium text-start color-palette-1 m-0">{price}</p>
+        <p className="fw-medium text-start color-palette-1 m-0">
+          <NumberFormat
+            value={price}
+            prefix="Rp "
+            displayType="text"
+            thousandSeparator="."
+            decimalSeparator=","
+          />
+        </p>
       </td>
       <td>
         <div>
