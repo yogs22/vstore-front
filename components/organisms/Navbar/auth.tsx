@@ -22,13 +22,12 @@ export default function Auth() {
     if (token) {
       const jwtToken = atob(token);
       const payload = jwtDecode(jwtToken);
-      const player: UserTypes = payload;
+      const userPlayer: UserTypes = payload.player;
 
       const IMG = process.env.NEXT_PUBLIC_UPLOAD;
 
-      player.avatar = `${IMG}/${player.avatar}`;
-
-      setUser(player);
+      userPlayer.avatar = `${IMG}/${userPlayer.avatar}`;
+      setUser(userPlayer);
       setIsLogin(true);
     }
   }, []);
