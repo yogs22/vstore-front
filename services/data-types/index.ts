@@ -45,3 +45,12 @@ export interface UserTypes {
   phoneNumber: string;
   username: string;
 }
+
+export interface CheckoutTypes {
+  voucher: string;
+  nominal: string;
+  payment: string;
+  bank: string;
+  name: string;
+  accountUser: string;
+}
