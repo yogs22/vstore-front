@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import Category from './category.tsx';
 import TableRow from './table-row.tsx';
 import { getMemberOverview } from '../../../services/player.ts';
+import { HistoryTransactionTypes, TopupCategoriesTypes } from '../../../services/data-types/index.ts';
 
 export default function OverviewContent() {
   const [count, setCount] = useState([]);
   const [data, setData] = useState([]);
-  const memberOverview = async () => {
+  const getMemberOverviewAPI = useCallback(async () => {
     const response = await getMemberOverview();
     if (response?.error) {
       return toast.error(response.message);
@@ -17,10 +18,10 @@ export default function OverviewContent() {
     setData(response.data);
 
     return true;
-  };
+  }, []);
 
   useEffect(() => {
-    memberOverview();
+    getMemberOverviewAPI();
   }, []);
 
   const IMG = process.env.NEXT_PUBLIC_UPLOAD;
@@ -32,8 +33,8 @@ export default function OverviewContent() {
           <p className="text-lg fw-medium color-palette-1 mb-14">Top Up Categories</p>
           <div className="main-content">
             <div className="row">
-              {count.map((item) => (
-                <Category nominal={item.value} icon={`ov-${item.name.toLowerCase()}`}>
+              {count.map((item: TopupCategoriesTypes) => (
+                <Category key={item._id} nominal={item.value} icon={`ov-${item.name.toLowerCase()}`}>
                   {item.name}
                 </Category>
               ))}
@@ -53,8 +54,9 @@ export default function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
-                {data.map((item) => (
+                {data.map((item: HistoryTransactionTypes) => (
                   <TableRow
+                    key={item._id}
                     title={item.historyVoucherTopup.gameName}
                     image={`${IMG}/${item.historyVoucherTopup.thumbnail}`}
                     category={item.historyVoucherTopup.category}
