@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import NumberFormat from 'react-number-format';
 import TableRow from './table-row.tsx';
 import ButtonTab from './button-tab.tsx';
-import { getMemberTransactions } from '../../../services/member.ts';
+import { HistoryTransactionTypes, getMemberTransactions } from '../../../services/member.ts';
 
 export default function TransactionContent() {
   const [total, setTotal] = useState(0);
@@ -71,9 +71,10 @@ export default function TransactionContent() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                {transactions.map((transaction) => (
+                {transactions.map((transaction: HistoryTransactionTypes) => (
                   <TableRow
                     key={transaction._id}
+                    id={transaction._id}
                     title={transaction.historyVoucherTopup.gameName}
                     image={`${IMG}/${transaction.historyVoucherTopup.thumbnail}`}
                     category={transaction.historyVoucherTopup.category}
