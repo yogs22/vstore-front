@@ -58,7 +58,7 @@ export default function TableRow(props: TableRowProps) {
         <div>
           <span className={statusClass} />
           <p className="fw-medium text-start color-palette-1 m-0 position-relative">
-            {status}
+            {status.charAt(0).toUpperCase() + status.slice(1)}
           </p>
         </div>
       </td>

@@ -2,7 +2,7 @@ import { useEffect, useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
 import Category from './category.tsx';
 import TableRow from './table-row.tsx';
-import { getMemberOverview } from '../../../services/player.ts';
+import { getMemberOverview } from '../../../services/member.ts';
 import { HistoryTransactionTypes, TopupCategoriesTypes } from '../../../services/data-types/index.ts';
 
 export default function OverviewContent() {
