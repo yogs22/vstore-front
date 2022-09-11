@@ -44,6 +44,7 @@ export interface UserTypes {
   id: string;
   phoneNumber: string;
   username: string;
+  name: string;
 }
 
 export interface CheckoutTypes {

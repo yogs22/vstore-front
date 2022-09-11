@@ -28,9 +28,6 @@ export default function Sidebar(props: SidebarProps) {
           <div className="menus">
             <MenuItem title="Overview" link="/member" img="member-overview.svg" active={activeMenu === 'overview'} />
             <MenuItem title="Transactions" link="/member/transactions" img="member-transactions.svg" active={activeMenu === 'transactions'} />
-            <MenuItem title="Messages" link="/member/messages" img="member-messages.svg" active={activeMenu === 'messages'} />
-            <MenuItem title="Card" link="/member/card" img="member-card.svg" active={activeMenu === 'card'} />
-            <MenuItem title="Rewards" link="/member/rewards" img="member-rewards.svg" active={activeMenu === 'rewards'} />
             <MenuItem title="Setting" link="/member/edit-profile" img="member-setting.svg" active={activeMenu === 'setting'} />
             <MenuItem title="Log Out" onClick={onLogout} img="member-logout.svg" />
           </div>

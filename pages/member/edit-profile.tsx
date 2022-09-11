@@ -1,7 +1,51 @@
+import jwtDecode from 'jwt-decode';
+import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import Sidebar from '../../components/organisms/Sidebar/index.tsx';
 import Input from '../../components/atoms/Input/index.tsx';
+import { UserTypes } from '../../services/data-types/index.ts';
+import { updateProfile } from '../../services/member.ts';
 
 export default function EditProfile() {
+  const [user, setUser] = useState({
+    id: '',
+    name: '',
+    email: '',
+    avatar: '',
+  });
+  const [imagePreview, setImagePreview] = useState(null);
+  const router = useRouter();
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwtToken = atob(token);
+      const payload = jwtDecode(jwtToken);
+      const userPlayer: UserTypes = payload.player;
+
+      const IMG = process.env.NEXT_PUBLIC_UPLOAD;
+
+      userPlayer.avatar = `${IMG}/${userPlayer.avatar}`;
+      setUser(userPlayer);
+    }
+  }, []);
+
+  const onSubmit = async () => {
+    const data = new FormData();
+    data.append('file', user.avatar);
+    data.append('name', user.username);
+
+    const response = await updateProfile(data);
+
+    if (response?.error) {
+      return toast.error(response.message);
+    }
+
+    toast.success('Sukses update profile');
+    Cookies.remove('token');
+    return router.push('/sign-in');
+  };
   return (
     <section className="edit-profile overflow-auto">
       <Sidebar activeMenu="setting" />
@@ -11,34 +55,51 @@ export default function EditProfile() {
           <div className="bg-card pt-30 ps-30 pe-30 pb-30">
             <form action="">
               <div className="photo d-flex">
-                <div className="position-relative me-20">
-                  <img src="/img/avatar-1.png" width="90" height="90" className="avatar img-fluid" alt="" />
-                  <div
-                    className="avatar-overlay position-absolute top-0 d-flex justify-content-center align-items-center"
-                  >
-                    <img src="/icon/upload-avatar.svg" width={24} height={24} alt="upload avatar" />
-                  </div>
-                </div>
                 <div className="image-upload">
                   <label htmlFor="avatar">
-                    <img src="/icon/upload.svg" alt="upload icon" width={90} height={90} />
+                    {imagePreview ? (
+                      <img src={imagePreview} alt="upload icon" width={90} height={90} style={{ borderRadius: '100%' }} />
+                    ) : (
+                      <img src={user.avatar} alt="upload icon" width={90} height={90} style={{ borderRadius: '100%' }} />
+                    )}
                   </label>
-                  <input id="avatar" type="file" name="avatar" accept="image/png, image/jpeg" />
+                  <input
+                    id="avatar"
+                    type="file"
+                    name="avatar"
+                    accept="image/png, image/jpeg"
+                    onChange={(event) => {
+                      const img = event.target.files[0];
+                      setImagePreview(URL.createObjectURL(img));
+                      return setUser({
+                        ...user,
+                        avatar: img,
+                      });
+                    }}
+                  />
                 </div>
               </div>
               <div className="pt-30">
-                <Input label="Full Name" name="full_name" placeholder="Enter your full name" />
+                <Input
+                  label="Full Name"
+                  value={user.username}
+                  onChange={(event) => setUser({
+                    ...user,
+                    username: event.target.value,
+                  })}
+                />
               </div>
               <div className="pt-30">
-                <Input label="Email Address" name="email" placeholder="Enter your email address" />
+                <Input label="Email Address" value={user.email} disabled />
               </div>
-              <div className="pt-30">
+              {/* <div className="pt-30">
                 <Input label="Phone" name="phone" placeholder="Enter your phone" />
-              </div>
+              </div> */}
               <div className="button-group d-flex flex-column pt-50">
                 <button
-                  type="submit"
+                  type="button"
                   className="btn btn-save fw-medium text-lg text-white rounded-pill"
+                  onClick={onSubmit}
                 >
                   Save My Profile
                 </button>

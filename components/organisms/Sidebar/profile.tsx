@@ -8,6 +8,7 @@ export default function Profile() {
   const [user, setUser] = useState({
     avatar: '',
     username: '',
+    name: '',
     email: '',
   });
 
