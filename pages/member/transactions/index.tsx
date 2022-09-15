@@ -1,5 +1,5 @@
-import Sidebar from '../../../components/organisms/Sidebar/index.tsx';
-import TransactionContent from '../../../components/organisms/TransactionContent/index.tsx';
+import Sidebar from '../../../components/organisms/Sidebar/index';
+import TransactionContent from '../../../components/organisms/TransactionContent/index';
 
 export default function Transactions() {
   return (
@@ -19,7 +19,7 @@ interface GetServerSideProps {
   }
 }
 
-export async function getServerSideProps({ req }): GetServerSideProps {
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
   if (!token) {
     return {

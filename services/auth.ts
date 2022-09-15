@@ -1,5 +1,5 @@
-import callAPI from '../config/api/index.ts';
-import { LoginTypes } from './data-types/index.ts';
+import callAPI from '../config/api/index';
+import { LoginTypes } from './data-types/index';
 
 const API_URL = process.env.NEXT_PUBLIC_API;
 

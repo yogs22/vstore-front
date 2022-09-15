@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from 'next/router';
-import { UserTypes } from '../../../services/data-types/index.ts';
+import { UserTypes, JWTPayloadTypes } from '../../../services/data-types/index';
 
 export default function Auth() {
   const [isBlock, setIsBlock] = useState(false);
@@ -12,8 +12,8 @@ export default function Auth() {
     avatar: '',
     email: '',
     id: '',
-    phoneNumber: '',
     username: '',
+    name: '',
   });
   const router = useRouter();
 
@@ -21,8 +21,8 @@ export default function Auth() {
     const token = Cookies.get('token');
     if (token) {
       const jwtToken = atob(token);
-      const payload = jwtDecode(jwtToken);
-      const userPlayer: UserTypes = payload.player;
+      const payload = jwtDecode<JWTPayloadTypes>(jwtToken);
+      const userPlayer : UserTypes = payload.player;
 
       const IMG = process.env.NEXT_PUBLIC_UPLOAD;
 

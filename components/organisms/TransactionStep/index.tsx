@@ -1,4 +1,4 @@
-import StepItem from '../../molecules/StepItem/index.tsx';
+import StepItem from '../../molecules/StepItem/index';
 
 export default function TransactionStep() {
   return (

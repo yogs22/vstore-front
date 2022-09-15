@@ -1,4 +1,4 @@
-import Illustration from './illustration.tsx';
+import Illustration from './illustration';
 
 export default function MainBanner() {
   return (

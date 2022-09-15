@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import GameItem, { GameItemProps } from '../../../../components/molecules/GameItem/index.tsx';
+import GameItem, { GameItemProps } from '../../../../components/molecules/GameItem/index';
 
 export default {
   title: 'Components/Molecules/GameItem',

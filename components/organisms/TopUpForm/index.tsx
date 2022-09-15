@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
-import { PaymentTypes, BanksType, NominalsTypes } from '../../../services/data-types/index.ts';
-import NominalItem from './NominalItem.tsx';
-import PaymentItem from './PaymentItem.tsx';
+import { PaymentTypes, BanksTypes, NominalsTypes } from '../../../services/data-types/index';
+import NominalItem from './NominalItem';
+import PaymentItem from './PaymentItem';
 
 interface TopUpFormProps {
-  nominals: NominalsTypes;
-  payments: PaymentTypes;
+  nominals: NominalsTypes[];
+  payments: PaymentTypes[];
 }
 
 export default function TopUpForm(props: TopUpFormProps) {
@@ -22,7 +22,7 @@ export default function TopUpForm(props: TopUpFormProps) {
     setNominalitem(data);
   };
 
-  const onPaymentItemChange = (payment: PaymentTypes, bank: BanksType) => {
+  const onPaymentItemChange = (payment: PaymentTypes, bank: BanksTypes) => {
     const data = {
       payment,
       bank,

@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
-import Sidebar from '../../components/organisms/Sidebar/index.tsx';
-import OverviewContent from '../../components/organisms/OverviewContent/index.tsx';
-import { JWTPayloadTypes, UserTypes } from '../../services/data-types/index.ts';
+import Sidebar from '../../components/organisms/Sidebar/index';
+import OverviewContent from '../../components/organisms/OverviewContent/index';
+import { JWTPayloadTypes, UserTypes } from '../../services/data-types/index';
 
 export default function Member() {
   return (
@@ -21,7 +21,7 @@ interface GetServerSideProps {
   }
 }
 
-export async function getServerSideProps({ req }): GetServerSideProps {
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
   if (!token) {
     return {

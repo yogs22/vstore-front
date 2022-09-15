@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
-import { setLogin } from '../../../services/auth.ts';
+import { setLogin } from '../../../services/auth';
 
 export default function SignInForm() {
   const [email, setEmail] = useState('');

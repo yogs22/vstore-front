@@ -1,4 +1,4 @@
-import callAPI from '../config/api/index.ts';
+import callAPI from '../config/api/index';
 
 const API_URL = process.env.NEXT_PUBLIC_API;
 

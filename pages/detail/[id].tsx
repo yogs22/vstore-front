@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import TopUpForm from '../../components/organisms/TopUpForm/index.tsx';
-import TopUpItem from '../../components/organisms/TopUpItem/index.tsx';
-import Navbar from '../../components/organisms/Navbar/index.tsx';
-import Footer from '../../components/organisms/Footer/index.tsx';
-import { getDetailVoucher, getFeaturedGame } from '../../services/player.ts';
-import { GameItemTypes, NominalsTypes, PaymentTypes } from '../../services/data-types/index.ts';
+import TopUpForm from '../../components/organisms/TopUpForm/index';
+import TopUpItem from '../../components/organisms/TopUpItem/index';
+import Navbar from '../../components/organisms/Navbar/index';
+import Footer from '../../components/organisms/Footer/index';
+import { GameItemTypes, NominalsTypes, PaymentTypes } from '../../services/data-types/index';
+import { getDetailVoucher, getFeaturedGame } from '../../services/player';
 
 interface DetailProps {
   dataItem: GameItemTypes,

@@ -1,9 +1,9 @@
 import { useEffect, useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
-import Category from './category.tsx';
-import TableRow from './table-row.tsx';
-import { getMemberOverview } from '../../../services/member.ts';
-import { HistoryTransactionTypes, TopupCategoriesTypes } from '../../../services/data-types/index.ts';
+import Category from './category';
+import TableRow from './table-row';
+import { getMemberOverview } from '../../../services/member';
+import { HistoryTransactionTypes, TopUpCategoriesTypes } from '../../../services/data-types/index';
 
 export default function OverviewContent() {
   const [count, setCount] = useState([]);
@@ -33,7 +33,7 @@ export default function OverviewContent() {
           <p className="text-lg fw-medium color-palette-1 mb-14">Top Up Categories</p>
           <div className="main-content">
             <div className="row">
-              {count.map((item: TopupCategoriesTypes) => (
+              {count.map((item: TopUpCategoriesTypes) => (
                 <Category key={item._id} nominal={item.value} icon={`ov-${item.name.toLowerCase()}`}>
                   {item.name}
                 </Category>

@@ -1,7 +1,7 @@
-import Sidebar from '../../../components/organisms/Sidebar/index.tsx';
-import TransactionDetailContent from '../../../components/organisms/TransactionDetailContent/index.tsx';
-import { HistoryTransactionTypes } from '../../../services/data-types/index.ts';
-import { getTransactionDetal } from '../../../services/member.ts';
+import Sidebar from '../../../components/organisms/Sidebar/index';
+import TransactionDetailContent from '../../../components/organisms/TransactionDetailContent/index';
+import { HistoryTransactionTypes } from '../../../services/data-types/index';
+import { getTransactionDetal } from '../../../services/member';
 
 interface TransactionDetailProps {
   transactionDetail: HistoryTransactionTypes;
@@ -23,13 +23,13 @@ interface GetServerSideProps {
     cookies: {
       token: string;
     };
-    params: {
-      idTrx: string,
-    },
-  }
+  },
+  params: {
+    idTrx: string,
+  },
 }
 
-export async function getServerSideProps({ req, params }): GetServerSideProps {
+export async function getServerSideProps({ req, params }: GetServerSideProps) {
   const { token } = req.cookies;
   const { idTrx } = params;
   if (!token) {

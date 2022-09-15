@@ -3,26 +3,35 @@ import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import Sidebar from '../../components/organisms/Sidebar/index.tsx';
-import Input from '../../components/atoms/Input/index.tsx';
-import { UserTypes } from '../../services/data-types/index.ts';
-import { updateProfile } from '../../services/member.ts';
+import Sidebar from '../../components/organisms/Sidebar';
+import Input from '../../components/atoms/Input/index';
+import { UserTypes, JWTPayloadTypes } from '../../services/data-types/index';
+import { updateProfile } from '../../services/member';
+
+interface UserStateTypes {
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  avatar: any;
+}
 
 export default function EditProfile() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<UserStateTypes>({
     id: '',
     name: '',
+    username: '',
     email: '',
     avatar: '',
   });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('/');
   const router = useRouter();
   useEffect(() => {
     const token = Cookies.get('token');
     if (token) {
       const jwtToken = atob(token);
-      const payload = jwtDecode(jwtToken);
-      const userPlayer: UserTypes = payload.player;
+      const payload = jwtDecode<JWTPayloadTypes>(jwtToken);
+      const userPlayer : UserTypes = payload.player;
 
       const IMG = process.env.NEXT_PUBLIC_UPLOAD;
 
@@ -57,10 +66,10 @@ export default function EditProfile() {
               <div className="photo d-flex">
                 <div className="image-upload">
                   <label htmlFor="avatar">
-                    {imagePreview ? (
-                      <img src={imagePreview} alt="upload icon" width={90} height={90} style={{ borderRadius: '100%' }} />
-                    ) : (
+                    {imagePreview === '/' ? (
                       <img src={user.avatar} alt="upload icon" width={90} height={90} style={{ borderRadius: '100%' }} />
+                    ) : (
+                      <img src={imagePreview} alt="upload icon" width={90} height={90} style={{ borderRadius: '100%' }} />
                     )}
                   </label>
                   <input
@@ -69,7 +78,7 @@ export default function EditProfile() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      const img = event.target.files[0];
+                      const img = event.target.files![0];
                       setImagePreview(URL.createObjectURL(img));
                       return setUser({
                         ...user,

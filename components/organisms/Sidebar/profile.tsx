@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { UserTypes } from '../../../services/data-types/index.ts';
+import { UserTypes, JWTPayloadTypes } from '../../../services/data-types/index';
 
 export default function Profile() {
   const token = Cookies.get('token');
@@ -15,8 +15,8 @@ export default function Profile() {
   useEffect(() => {
     if (token) {
       const jwtToken = atob(token);
-      const payload = jwtDecode(jwtToken);
-      const userPlayer: UserTypes = payload.player;
+      const payload = jwtDecode<JWTPayloadTypes>(jwtToken);
+      const userPlayer : UserTypes = payload.player;
 
       const IMG = process.env.NEXT_PUBLIC_UPLOAD;
 

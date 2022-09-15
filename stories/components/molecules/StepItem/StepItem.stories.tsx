@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import StepItem, { StepItemProps } from '../../../../components/molecules/StepItem/index.tsx';
+import StepItem, { StepItemProps } from '../../../../components/molecules/StepItem/index';
 
 export default {
   title: 'Components/Molecules/StepItem',

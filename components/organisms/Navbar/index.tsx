@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Menu from './menu.tsx';
-import Auth from './auth.tsx';
-import ToggleMenu from './toggle-menu.tsx';
+import Menu from './menu';
+import Auth from './auth';
+import ToggleMenu from './toggle-menu';
 
 export default function Navbar() {
   return (

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import SignUpForm from '../components/organisms/SignUpForm/index.tsx';
+import SignUpForm from '../components/organisms/SignUpForm/index';
 
 export default function SignUp() {
   return (

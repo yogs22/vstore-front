@@ -5,7 +5,7 @@ interface TableRowProps {
   title: string,
   image: string,
   category: string,
-  item: number,
+  item: string,
   price: number,
   status: string
 }

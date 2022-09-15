@@ -1,5 +1,5 @@
-import Row from './row.tsx';
-import { HistoryTransactionTypes } from '../../../services/data-types/index.ts';
+import Row from './row';
+import { HistoryTransactionTypes } from '../../../services/data-types/index';
 
 interface TransactionDetailContentProps {
   data: HistoryTransactionTypes;

@@ -1,10 +1,10 @@
 import jwtDecode from 'jwt-decode';
-import CheckoutItem from '../components/organisms/CheckoutItem/index.tsx';
-import CheckoutDetail from '../components/organisms/CheckoutDetail/index.tsx';
-import CheckoutConfirmation from '../components/organisms/CheckoutConfirmation/index.tsx';
-import Navbar from '../components/organisms/Navbar/index.tsx';
-import Footer from '../components/organisms/Footer/index.tsx';
-import { JWTPayloadTypes, UserTypes } from '../services/data-types/index.ts';
+import CheckoutItem from '../components/organisms/CheckoutItem/index';
+import CheckoutDetail from '../components/organisms/CheckoutDetail/index';
+import CheckoutConfirmation from '../components/organisms/CheckoutConfirmation/index';
+import Navbar from '../components/organisms/Navbar/index';
+import Footer from '../components/organisms/Footer/index';
+import { JWTPayloadTypes, UserTypes } from '../services/data-types/index';
 
 export default function Checkout() {
   return (
@@ -35,7 +35,7 @@ interface GetServerSideProps {
   }
 }
 
-export async function getServerSideProps({ req }): GetServerSideProps {
+export async function getServerSideProps({ req }: GetServerSideProps) {
   const { token } = req.cookies;
   if (!token) {
     return {
