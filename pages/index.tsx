@@ -16,12 +16,12 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>VStore - Get a New Experience in Gaming</title>
+        <title>Vstore - Get a New Experience in Gaming</title>
         <meta name="description" content="Kami menyediakan jutaan cara untuk membantu players menjadi pemenang sejati" />
-        <meta property="og:title" content="VStore - Get a New Experience in Gaming" />
+        <meta property="og:title" content="Vstore - Get a New Experience in Gaming" />
         <meta property="og:description" content="Kami menyediakan jutaan cara untuk membantu players menjadi pemenang sejati" />
-        <meta property="og:image" content="VStore - Get a New Experience in Gaming" />
-        <meta property="og:url" content="VStore - Get a New Experience in Gaming" />
+        <meta property="og:image" content="Vstore - Get a New Experience in Gaming" />
+        <meta property="og:url" content="Vstore - Get a New Experience in Gaming" />
       </Head>
       <Navbar />
       <MainBanner />
