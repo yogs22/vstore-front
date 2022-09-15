@@ -38,13 +38,13 @@ export default function Footer() {
                 </svg>
               </a>
               <p className="mt-30 text-lg color-palette-1 mb-30">
-                StoreGG membantu gamers
+                Vstore membantu gamers
                 <br />
                 {' '}
                 untuk menjadi
                 pemenang sejati
               </p>
-              <p className="mt-30 text-lg color-palette-1 mb-30">Copyright 2021. All Rights Reserved.</p>
+              <p className="mt-30 text-lg color-palette-1 mb-30">Copyright 2022. All Rights Reserved.</p>
             </div>
             <div className="col-lg-8 mt-lg-0 mt-20">
               <div className="row gap-sm-0">
@@ -99,18 +99,18 @@ export default function Footer() {
                   <ul className="list-unstyled">
                     <li className="mb-6">
                       <a
-                        href="mailto: hi@store.gg"
+                        href="mailto: hi@vstore.id"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        hi@store.gg
+                        hi@vstore.id
                       </a>
                     </li>
                     <li className="mb-6">
                       <a
-                        href="mailto: team@store.gg"
+                        href="mailto: team@vstore.id"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        team@store.gg
+                        team@vstore.id
                       </a>
                     </li>
                     <li className="mb-6">
